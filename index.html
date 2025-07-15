@@ -1,0 +1,186 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nearby Utility Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    #status {
+      margin: 10px;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nearby Utility Finder</h1>
+  <p id="status">Checking your network speed and location...</p>
+  <canvas id="mapCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const status = document.getElementById('status');
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function drawMap(lat, lon) {
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'green';
+      ctx.beginPath();
+      ctx.arc(200, 200, 8, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.fillText('You are here', 210, 200);
+
+      // Simulate nearby utilities
+      const utilities = [
+        { x: 160, y: 180, label: 'ATM' },
+        { x: 250, y: 150, label: 'Hospital' },
+        { x: 190, y: 240, label: 'Petrol Pump' }
+      ];
+
+      ctx.fillStyle = 'blue';
+      utilities.forEach(u => {
+        ctx.beginPath();
+        ctx.arc(u.x, u.y, 6, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillText(u.label, u.x + 10, u.y);
+      });
+    }
+
+    function checkNetworkSpeed() {
+      if ('connection' in navigator) {
+        const type = navigator.connection.effectiveType;
+        status.innerText += `\nNetwork: ${type}`;
+        if (type === 'slow-2g' || type === '2g') {
+          alert('You are on a slow network. Some features may be limited.');
+        }
+      }
+    }
+
+    function locateUser() {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            status.innerText = `Location found! (Lat: ${latitude.toFixed(2)}, Lon: ${longitude.toFixed(2)})`;
+            drawMap(latitude, longitude);
+          },
+          (err) => {
+            status.innerText = 'Unable to retrieve your location.';
+            console.error(err);
+          }
+        );
+      } else {
+        status.innerText = 'Geolocation is not supported by your browser.';
+      }
+    }
+
+    checkNetworkSpeed();
+    locateUser();
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nearby Utility Finder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="text-center">
+      <h1 class="mb-4">Nearby Utility Finder</h1>
+      <p id="status" class="text-muted">Checking your network speed and location...</p>
+      <canvas id="mapCanvas" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const status = document.getElementById('status');
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function drawMap(lat, lon) {
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'green';
+      ctx.beginPath();
+      ctx.arc(200, 200, 8, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.font = '12px Arial';
+      ctx.fillText('You are here', 210, 200);
+
+      // Simulate nearby utilities
+      const utilities = [
+        { x: 160, y: 180, label: 'ATM' },
+        { x: 250, y: 150, label: 'Hospital' },
+        { x: 190, y: 240, label: 'Petrol Pump' }
+      ];
+
+      ctx.fillStyle = 'blue';
+      utilities.forEach(u => {
+        ctx.beginPath();
+        ctx.arc(u.x, u.y, 6, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillText(u.label, u.x + 10, u.y);
+      });
+    }
+
+    function checkNetworkSpeed() {
+      if ('connection' in navigator) {
+        const type = navigator.connection.effectiveType;
+        status.innerText += `\nNetwork: ${type}`;
+        if (type === 'slow-2g' || type === '2g') {
+          alert('You are on a slow network. Some features may be limited.');
+        }
+      }
+    }
+
+    function locateUser() {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            status.innerText = `Location found! (Lat: ${latitude.toFixed(2)}, Lon: ${longitude.toFixed(2)})`;
+            drawMap(latitude, longitude);
+          },
+          (err) => {
+            status.innerText = 'Unable to retrieve your location.';
+            console.error(err);
+          }
+        );
+      } else {
+        status.innerText = 'Geolocation is not supported by your browser.';
+      }
+    }
+
+    checkNetworkSpeed();
+    locateUser();
+  </script>
+</body>
+</html>
